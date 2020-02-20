@@ -35,11 +35,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     // justifyContent: "center"
-    top: '10%'
   },
   input: {
     backgroundColor: "#f2f1f1",
-    width: '80%'
+    width: '80%',
+    marginTop: '10%'
   }
 });
 
