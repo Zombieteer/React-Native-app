@@ -1,29 +1,9 @@
-import React, {useState} from "react";
-import { StyleSheet, Text, View, TextInput } from "react-native";
-
+import React from "react";
+import Todo from "./src/app/Todo";
 export default function App() {
-  const [text, setText] = useState("");
-  const [todos, setTodos] = useState([1,2,3]);
-
   return (
-    <View style={styles.container}>
-      <TextInput  style={styles.input}/>
-      {todos.map((todo,i) => (
-        <Text key={i}>{todo}</Text>
-      ))}
-    </View>
+    <>
+      <Todo />
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  input: {
-    backgroundColor: "#f2f1f1",
-    width: '80%'
-  }
-});
