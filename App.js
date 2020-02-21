@@ -6,8 +6,8 @@ import { ScrollView } from "react-native";
 export default function App() {
   return (
     <ScrollView>
-      {/* <Todo /> */}
-      <Reddit />
+      <Todo />
+      {/* <Reddit /> */}
     </ScrollView>
   );
 }

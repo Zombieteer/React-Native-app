@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -8,8 +8,20 @@ import {
 } from "react-native";
 
 const Todo = () => {
+
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
+
+
+  // useEffect(() => {
+  //   fetch('http://localhost:3000/todos', {
+  //     headers : {
+  //       'Accept': 'application/json'
+  //     }
+  //   })
+  //   .then(res => res.json())
+  //   .then(todos => setTodos(todos))
+  // })
 
   const handleChange = text => {
     setNewTodo(text);
@@ -19,6 +31,20 @@ const Todo = () => {
     if (newTodo!==''){
       setTodos([...todos, newTodo]);
       setNewTodo("");
+    //   fetch('http://localhost:3000/todos',{
+    //     method: 'POST',
+    //     body: JSON.stringify({
+    //       name: newTodo
+    //     }),
+    //     headers: {
+    //       'Accept': 'application/json'
+    //     }
+    //   })
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     setTodos([...todos, data])
+    //     setNewTodo("");
+    // })
     }
   };
 
@@ -40,6 +66,7 @@ const Todo = () => {
         {todos.map((todo, i) => (
           <View style={styles.todo} key={i}>
             <Text  style={styles.todoText} >{todo}</Text>
+            {/* <Text  style={styles.todoText} >{todo.name}</Text> */}
           </View>
         ))}
       </View>
