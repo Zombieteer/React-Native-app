@@ -13,15 +13,15 @@ const Todo = () => {
   const [newTodo, setNewTodo] = useState("");
 
 
-  // useEffect(() => {
-  //   fetch('http://localhost:3000/todos', {
-  //     headers : {
-  //       'Accept': 'application/json'
-  //     }
-  //   })
-  //   .then(res => res.json())
-  //   .then(todos => setTodos(todos))
-  // })
+  useEffect(() => {
+    fetch('http://localhost:5000/todos', {
+      headers : {
+        'Accept': 'application/json'
+    }
+  })
+    .then(res => res.json())
+    .then(todos => setTodos(todos))
+  },[''])
 
   const handleChange = text => {
     setNewTodo(text);
@@ -29,22 +29,21 @@ const Todo = () => {
 
   const handlePress = () => {
     if (newTodo!==''){
-      setTodos([...todos, newTodo]);
-      setNewTodo("");
-    //   fetch('http://localhost:3000/todos',{
-    //     method: 'POST',
-    //     body: JSON.stringify({
-    //       name: newTodo
-    //     }),
-    //     headers: {
-    //       'Accept': 'application/json'
-    //     }
-    //   })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     setTodos([...todos, data])
-    //     setNewTodo("");
-    // })
+      fetch('http://localhost:5000/todos',{
+        method: 'POST',
+        body: JSON.stringify({
+          name: newTodo
+        }),
+        headers: {
+          // 'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => res.json())
+      .then(todo => {
+        setTodos([ todo, ...todos])
+        setNewTodo("");
+    })
     }
   };
 
@@ -65,8 +64,8 @@ const Todo = () => {
       <View style={ styles.todos }>
         {todos.map((todo, i) => (
           <View style={styles.todo} key={i}>
-            <Text  style={styles.todoText} >{todo}</Text>
-            {/* <Text  style={styles.todoText} >{todo.name}</Text> */}
+            {/* <Text  style={styles.todoText} >{todo}</Text> */}
+            <Text  style={styles.todoText} >{todo.name}</Text>
           </View>
         ))}
       </View>
